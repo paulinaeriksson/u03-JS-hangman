@@ -7,9 +7,27 @@
 .container {
     margin: 20px;
     padding: 50px;
+    display: flex;
+    flex-direction: column;
 }
 h1 {
     text-align: center;
+}
+
+img {
+    width: 20vw;
+    height: 20vh;
+}
+
+
+
+li {
+  list-style: none;
+  display: inline;
+}
+
+#keyboard {
+    display: flex;
 }
 
 #keyboard button {
