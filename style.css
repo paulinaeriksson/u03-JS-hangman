@@ -12,14 +12,14 @@
 }
 h1 {
     text-align: center;
+    text-transform: uppercase;
+    color: rgb(90, 175, 90);
 }
 
 img {
     width: 20vw;
     height: 20vh;
 }
-
-
 
 li {
   list-style: none;
@@ -33,21 +33,21 @@ li {
 #keyboard button {
     width: 30px;
     height:30px;
-    background: rgb(125, 196, 199);
+    background: rgb(87, 197, 87);
     border-radius: 5px;
     margin: 3px;
     font-size: 1rem;
 }
 #keyboard button:hover{
-    background: cadetblue;
+    background: rgb(90, 175, 90);
 }
 #reset {
     width: 90px;
     height:30px;
-    background: rgb(125, 196, 199);
+    background: rgb(87, 197, 87);
     border-radius: 5px;
     margin-top: 20px;
 }
 #reset:hover{
-    background: cadetblue;
+    background: rgb(87, 197, 87);
 }
