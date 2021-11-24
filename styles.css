@@ -4,21 +4,30 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
 }
+
+body {
+    background: linear-gradient(white 60%, rgb(94, 91, 91));
+}
 .container {
-    margin: 20px;
+    margin-top: 20px;
     padding: 50px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
+
 h1 {
+    font-size: 6rem;
     text-align: center;
     text-transform: uppercase;
     color: rgb(90, 175, 90);
 }
 
 img {
-    width: 20vw;
-    height: 20vh;
+    width: 30vw;
+    height: 30vh;
+    margin-left: 50px;
 }
 
 li {
@@ -28,26 +37,46 @@ li {
 
 #keyboard {
     display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+    text-align: center;
 }
 
 #keyboard button {
-    width: 30px;
-    height:30px;
+    width: 6rem;
+    height:6rem;
+    margin: 20px;
     background: rgb(87, 197, 87);
     border-radius: 5px;
     margin: 3px;
-    font-size: 1rem;
+    font-size: 2rem;
 }
 #keyboard button:hover{
     background: rgb(90, 175, 90);
 }
 #reset {
-    width: 90px;
-    height:30px;
+    width: 15rem;
+    height: 8rem;
     background: rgb(87, 197, 87);
     border-radius: 5px;
     margin-top: 20px;
+    font-size: 2rem;
+    border-radius: 10%;
 }
 #reset:hover{
-    background: rgb(87, 197, 87);
+    background: rgb(90, 175, 90) ;
+}
+
+.reset {
+    text-align: center;
+}
+#word {
+    margin-top: 20px;
+    font-size: 5rem;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    font-size: 3rem;
 }

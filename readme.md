@@ -10,4 +10,4 @@
 [] Create a function who checks if the chosen letter is included in the word
 [] Create a placeholder for letters (amout of guesses)
 [] Show image when wrong
-[] Create reset function
+[] Create a reset function

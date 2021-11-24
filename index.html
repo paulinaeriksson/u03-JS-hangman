@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Hangman</title>
 </head>
 <body>
     <div class="container">
         <h1>Hangman</h1>
         <section class="guesses">
-            <p>Antal fel:</p>
-            <p id="wrongGuesses"></p>
+            <p>Antal gissningar kvar:</p>
+            <p id="guessCounter"></p>
         </section>
         <section>
             <img id="hangman" src="./img/bild1.png" alt="Bild på hangman">
-            <p>Gissa ordet</p>
-            <p>Du har 10 gissningar</p>
+            <p>Gissa ordet: </p>
             <p id="word">Här hamnar det gissade ordet</p>
         </section>
         <section id="keyboard">
