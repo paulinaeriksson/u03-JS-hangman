@@ -54,7 +54,7 @@ li {
 #keyboard button:hover{
     background: rgb(90, 175, 90);
 }
-#reset {
+#resetButton {
     width: 15rem;
     height: 8rem;
     background: rgb(87, 197, 87);
@@ -63,11 +63,11 @@ li {
     font-size: 2rem;
     border-radius: 10%;
 }
-#reset:hover{
+#resetButton:hover{
     background: rgb(90, 175, 90) ;
 }
 
-.reset {
+.resetButton {
     text-align: center;
 }
 #word {

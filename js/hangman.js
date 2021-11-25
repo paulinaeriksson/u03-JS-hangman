@@ -12,11 +12,13 @@ let dogs = [
 ]
 
 let rightWord = "";
-let guessCounter = 10;
+let maxWrong = 10;
+let guessCounter = "";
 let word = null;
 let guessed = [];
 let letters = "";
 let btn = "";
+let reset = "";
 
 //Array med bokstäver (för knapparna) 
 let alphabet = [
@@ -36,34 +38,50 @@ function displayWord() {
     document.getElementById("word").innerHTML = rightWord.split("").map(letter => (guessed.indexOf(letter)) >= 0 ? letter : " _ ").join("");
 }
 
-//Ändrar texten vid elementet med id numberOfGuesses till maxWrong (dvs räknar hur många gissningar som är kvar)
-function count () {
-document.getElementById("guessCounter").innerHTML = guessCounter;
-
-}
-
 //Skapa knapparna med onclick-funktion. Tar variabeln html och lägger till html-kod för varje (forEach) bokstav.
 let html = ``;
 alphabet.forEach(function(letters){
     html += `<li><button class="ctrlBtn" onclick="btn" >${letters}</button>`
 })
-//Gör elementen synliga i html-dokumentet
+//Gör button-elementen synliga i html-dokumentet
 button.innerHTML = html;
-let click = 0;
-//Funktion för att färga varje knapp som använts. 
+
+//Funktion för att färga och stänga av varje knapp som använts. 
 document.querySelectorAll('.ctrlBtn').forEach(function(btn){
     btn.addEventListener('click', function() {
       this.style.background = "darkgray";
+      btn.disabled = true;
     });
   });
 
-//Funktion för gissade ord
+  //Ändrar texten vid elementet med id numberOfGuesses (dvs räknar klick)
+function count () {
+    document.getElementById("guessCounter").innerHTML = guessCounter;
+        }
+    
 
- 
+//Funktion för ränkaren av antal klick. 
+document.querySelectorAll('.ctrlBtn').forEach(function(btn){
+    btn.addEventListener('click', function() {
+        document.getElementById("guessCounter").innerHTML++;
+    });
+  });
 
-//Funktion för att starta om spelet
-function reset () {
 
+
+//Funktion för vinst
+//Funktion för förlust
+  
+
+//Funktion nollställer antal gissningar
+function restart() {
+    document.getElementById("resetButton").addEventListener("click", function() {
+        //Nollställer antal gissningar 
+        document.getElementById("guessCounter").innerHTML = ("");
+      ;
+    })
 }
-count();
+
+
+/*count();*/
 displayWord();
