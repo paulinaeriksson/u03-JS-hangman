@@ -36,7 +36,11 @@ random();
 //Funktion som visar ordet med _ på skärmen genom att dela rightWord, .join tar bort kommatecken mellan varje dold bokstav.
 function displayWord() {
     document.getElementById("word").innerHTML = rightWord.split("").map(letter => (guessed.indexOf(letter)) >= 0 ? letter : " _ ").join("");
-
+    
+    //test för att kunna se rätt ord i konsollen - raderas sen.
+    console.log(rightWord);
+    console.log(rightWord.includes("b"));
+   
 }
 
 //Skapa knapparna med onclick-funktion. Tar variabeln html och lägger till html-kod för varje (forEach) bokstav.
@@ -63,15 +67,30 @@ function count () {
 //Funktion för ränkaren av antal klick. 
 document.querySelectorAll('.ctrlBtn').forEach(function(btn){
     btn.addEventListener('click', function() {
-        document.getElementById("guessCounter").innerHTML++;
+        let pressed = document.getElementById("guessCounter").innerHTML++;
+        if (pressed === 10) {
+            alert("game over");
+        }
     });
   });
 
 //Funktion för vinst
-
-
-
 //Funktion för förlust
+
+document.querySelectorAll('.ctrlBtn').forEach(function(btn){
+    btn.addEventListener('click', function() {
+        let guess = (rightWord.includes(btn.innerHTML))
+       //test
+        if (guess === true) {
+           console.log(`${btn.innerHTML} finns med i ordet`);
+       } else {
+           console.log(`${btn.innerHTML} finns inte med i ordet`);
+       };
+       
+     
+    });
+  });
+  
   
 
 //Funktion nollställer antal gissningar
