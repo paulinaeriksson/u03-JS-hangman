@@ -50,6 +50,7 @@ li {
     border-radius: 5px;
     margin: 3px;
     font-size: 2rem;
+    text-transform: uppercase;
 }
 #keyboard button:hover{
     background: rgb(90, 175, 90);
