@@ -77,7 +77,125 @@ li {
     text-align: center;
 }
 
+.box {
+    height: 7rem;
+    width: 7rem;
+    background:rgb(182, 211, 182);
+}
+
+.box li {
+     
+        display: inline-flex;
+
+
+    }
+
+
 p {
     text-align: center;
     font-size: 3rem;
 }
+
+@media only screen and (max-width: 40em) {
+    
+    body {
+        background: rgb(238, 243, 238);
+        height: 100%;
+        margin: 2em;
+    }
+    
+    .container {
+        margin: 2em;
+        margin-bottom: 1em;
+        padding: 0;
+        height: 600px;
+        width: 70vw;
+    }
+
+    header {
+        height: 7vh;
+    }
+
+    .boxes {
+        width:100vw;
+        margin-left: 0;
+    }
+
+    .img-container {
+        height: 20vh;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2em;
+        margin-bottom: 1em;
+        margin-top: 2px;
+    }
+
+  
+    h2 {
+        font-size: 1.4em;
+        text-transform: uppercase;
+        font-weight: normal;
+    }
+    
+    .guesses p {
+        font-size: 1em;
+        text-align: left;
+        width: 50%;
+    }
+   
+    #boxes {
+        height: 40px;
+
+    }
+    #word {
+        width: 90vw;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+       
+    }
+
+    #word ul {
+        width: 90vw;
+      
+    }
+
+    .box {
+        width: 2.4em;
+        height: 3em;
+        margin: 0;
+    }
+
+    #keyboard {
+      width: 100vw;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 60vh;
+      left: 0;
+    }
+    
+    #button {
+        display: flex;
+        justify-content:center;
+        flex-wrap: wrap;
+        margin: 2px;
+    }
+
+
+
+    #keyboard button {
+        width: 1.5em;
+        height: 1.5em;
+        font-size: 1.8em;
+    }
+    
+    #resetButton {
+        margin-bottom: 2px;
+        width: 50vw;
+        height: 3em;
+    }
+    
+  }

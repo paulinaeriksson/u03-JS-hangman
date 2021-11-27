@@ -12,21 +12,29 @@
         <header>
         <h1>Hangman - u03</h1>
         </header>
+        <main>
+        <div class="display">
         <section class="guesses">
             <p>Antal gissningar:</p>
             <p> <span id="guessCounter"> 0</span> av 10</p>
         </section>
-        <section>
+        <section class="img-container">
             <img src="./img/bild1.png" id="hangman" >
             <h2>Gissa ordet: </h2>
-            <p id="word">Här hamnar det gissade ordet</p>
+        </section>
+        </div>
+        <section id="boxes">
+            <ul id="word">Här hamnar det gissade ordet</ul><
         </section>
         <section id="keyboard">
          <ul id="button"></ul>
         </section>
-        <section class="resetButton">
-            <button id="resetButton" onclick="restart">Spela igen</button>
-        </section>
     </div>
+</main>
+<footer>
+    <section class="resetButton">
+        <button id="resetButton" onclick="restart">Spela igen</button>
+    </section>
+</footer>
     <script src="./js/hangman.js"></script>
 </body>
