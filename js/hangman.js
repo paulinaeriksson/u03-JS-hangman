@@ -30,6 +30,7 @@ let index = "";
 let restart = "";
 //Variabel för bokstäverna i ordet man ska gissa på
 let hiddenLetter = "";
+let letterRightWord = "";
 
 
 ///ARRAYER///
@@ -121,17 +122,22 @@ ctrlBtn.forEach(function clickCount (btn){
 for (let i = 0; i < rightWord.length; i++) {
 
     //console.log(rightWord.indexOf(index));
-
-guessed[i] = `<li><input class='box' type='text' disabled value='' id =""/></li>`;
+    console.log(splitRightWord = rightWord.split(""));
+    guessed[i] = `<li><input class='box' type='text' disabled value='${splitRightWord[i]}' id =""/></li>`;
     //console.log(guessed);
-    document.getElementById("word").value = guessed;
+    document.getElementById("word").value = guessed;    
+}
 
 
+ 
+for (let i = 0; i < splitRightWord.length; i++) { 
+        letterRightWord = splitRightWord[i]
 }
     
 for (let j = 0; j < rightWord.length; j++) {
     splitRightWord = rightWord[j];
-    console.log(splitRightWord + index);
+   
+    //console.log(splitRightWord + index);
     //console.log(guessed);
 
 
@@ -141,7 +147,7 @@ for (let j = 0; j < rightWord.length; j++) {
 //leftoverLetters = rightWord.length;
 
 
-
+console.log(splitRightWord = rightWord.split(""));
 
 
 //Tar fram index för bokstaven (inte bara första )
@@ -244,7 +250,6 @@ ctrlBtn.forEach(function(btn){
   }
 )
     
-
 
 
 //let removedLetters2 = splitRightWord.splice(index, 1);
