@@ -11,3 +11,12 @@
 [] Create a placeholder for letters (amout of guesses)
 [] Show image when wrong
 [] Create a reset function
+
+
+
+
+
+
+Varje bokstav i rightWord måste få ett värde 
+
+

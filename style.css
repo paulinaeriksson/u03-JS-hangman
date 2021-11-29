@@ -7,6 +7,7 @@
 
 body {
     background: linear-gradient(white 60%, rgb(94, 91, 91));
+   
 }
 .container {
     margin-top: 20px;
@@ -81,12 +82,16 @@ li {
     height: 7rem;
     width: 7rem;
     background:rgb(182, 211, 182);
+    text-align: center;
+    font-size: 4rem;
+    text-transform: uppercase;
+    
 }
 
 .box li {
      
         display: inline-flex;
-
+        font-size: 14px;
 
     }
 
@@ -184,14 +189,12 @@ p {
         margin: 2px;
     }
 
-
-
     #keyboard button {
         width: 1.5em;
         height: 1.5em;
         font-size: 1.8em;
     }
-    
+
     #resetButton {
         margin-bottom: 2px;
         width: 50vw;
