@@ -143,7 +143,11 @@ restart = document.getElementById("resetButton");
 
 //Funktion nollställer antal gissningar och låser upp bokstavsknapparna
 document.getElementById("resetButton").addEventListener ("click", function reset() {
-    
+    hngImg.setAttribute("src", `./img/bild0.png`);
+    wrongGuess ="";
+    rightGuess="";
+    guessHtml.style.color = "black";
+
 for (let i = 0; i < ctrlBtn.length; i++) {
     ctrlBtn[i].disabled = false;
 }  
