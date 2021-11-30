@@ -116,7 +116,7 @@ p {
         margin: 2em;
         margin-bottom: 0;
         padding: 0;
-        height: 100vh;
+        height: 800px;
         width: 70vw;
     }
 
@@ -129,8 +129,8 @@ p {
         margin-left: 0;
     }
 
-    .img-container {
-        height: 20vh;
+    img {
+        height: 25vh;
     }
 
     h1 {
@@ -143,6 +143,7 @@ p {
     main {
         height: 100vh;
         flex-direction: column;
+        
     }
     h2 {
         font-size: 1.4em;
@@ -186,17 +187,19 @@ p {
     }
 
     #keyboard {
-      width: 100vw;
+      position: absolute;
+      bottom: 200px;
+      width: 90vw;
       padding: 0;
       margin: 0;
-      position: absolute;
+      margin-left: 2rem;
+      margin-top: 2rem;
       top: 60vh;
       left: 0;
     }
     
     #button {
         display: flex;
-        justify-content:center;
         flex-wrap: wrap;
         margin: 2px;
     }

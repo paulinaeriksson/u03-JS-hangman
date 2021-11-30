@@ -127,7 +127,7 @@ ctrlBtn.forEach(function disableBtn (btn){
 });
   });
 
-  //Anropar random - fylttas till en startfunktion
+  //Anropar random - flyttas till en startfunktion
 random();
 
 
@@ -148,12 +148,13 @@ document.getElementById("resetButton").addEventListener ("click", function reset
     rightGuess="";
     guessHtml.style.color = "black";
 
+
 for (let i = 0; i < ctrlBtn.length; i++) {
     ctrlBtn[i].disabled = false;
+
 }  
     for (i = count; i >= count; i-- ){
     document.getElementById("guessCounter").innerHTML = (`${i}`);
 
     }
 })
-
