@@ -103,6 +103,9 @@ p {
 
 @media only screen and (max-width: 40em) {
     
+    html {
+        height: 100%;
+    }
     body {
         background: rgb(238, 243, 238);
         height: 100%;
@@ -111,9 +114,9 @@ p {
     
     .container {
         margin: 2em;
-        margin-bottom: 1em;
+        margin-bottom: 0;
         padding: 0;
-        height: 600px;
+        height: 100vh;
         width: 70vw;
     }
 
@@ -121,7 +124,7 @@ p {
         height: 7vh;
     }
 
-    .boxes {
+    #boxes {
         width:100vw;
         margin-left: 0;
     }
@@ -132,22 +135,30 @@ p {
 
     h1 {
         text-align: center;
-        font-size: 2em;
+        font-size: 1.7em;
         margin-bottom: 1em;
         margin-top: 2px;
     }
 
-  
+    main {
+        height: 100vh;
+        flex-direction: column;
+    }
     h2 {
         font-size: 1.4em;
         text-transform: uppercase;
         font-weight: normal;
+       
     }
-    
+    .display {
+        width: 100vw;
+
+    }
     .guesses p {
         font-size: 1em;
         text-align: left;
-        width: 50%;
+        width: 70%;
+        margin-bottom: 1.5rem;
     }
    
     #boxes {
@@ -168,9 +179,10 @@ p {
     }
 
     .box {
-        width: 2.4em;
-        height: 3em;
+        width: 2rem;
+        height: 2rem;
         margin: 0;
+        font-size: 14px;
     }
 
     #keyboard {
@@ -198,7 +210,7 @@ p {
     #resetButton {
         margin-bottom: 2px;
         width: 50vw;
-        height: 3em;
+        height: 3.5rem;
     }
     
   }

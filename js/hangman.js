@@ -5,7 +5,7 @@ let html = ``;
 //Variabel för ordet (hundrasen) man ska gissa på
 let rightWord = "";
 //Variabel för max antal felgissningar
-let maxWrong = 6;
+let maxWrong = 5;
 //Variabel för räknade klick
 let guessCounter = "";
 //Variabel för id:t där det gissade ordet hamnar.
@@ -18,27 +18,22 @@ let letters = "";
 let btn = "";
 //Variabel för spela igen-knappen
 let resetButton = "";
-//Variabel för bokstäverna som blir över efter att man har gissat
+//Variabel för antal klick på fel bokstav
 let wrongGuess = 0;
+//Varibel för antal klick på rätt bokstav
 let rightGuess = 0;
+//Hur många försök man har att gissa
 let count = 6;
-
-//Variabel som lagrar data för hur många ggr man har klickat på bokstäverna
-let pressed = "";
-
-let splitRightWord = [];
-let index = "";
 let restart = "";
 //Variabel för bokstäverna i ordet man ska gissa på
 let hiddenLetter = "";
 //let letterRightWord = "";
-let imgValue = "";
-let img = [];
 let imgContainer = "";
 let buttonValue = "";
 let click ="";
+const guessHtml = document.getElementById("guessCounter");
+const hngImg = document.getElementById("hangman");
 
-///ARRAYER///
 
 //Array med hundraser
 const dogs = [
@@ -53,31 +48,13 @@ const dogs = [
     "chihuahua"
 ];
 
-//Array med bilder
-const hngImg = document.getElementById("hangman");
-/*
-let hangmanImgArray = [
-    "./img/bild1.png",
-    "./img/bild2.png",
-    "./img/bild3.png",
-    "./img/bild4.png",
-    "./img/bild5.png",
-    "./img/bild6.png",
-  
-];*/
-
-
-
 
 
 function random() {
     rightWord = dogs[Math.floor(Math.random() * dogs.length)];
 }
 
-//Anropar random
-random();
-//Test för att se ordet som ska gissas i konsolen
-console.log(rightWord);
+
 
 /// SPELPLAN ///
 
@@ -91,11 +68,20 @@ let alphabet = [
 alphabet.forEach(function createLetters(letters){
     html += `<li><button class="ctrlBtn" onclick="btn" value="${letters}"" >${letters}</button>`
 })
-//Gör button-elementen synliga i html-dokumentet
 button.innerHTML = html;
 
+
+
 //Lägger in knapparnas class="ctrlBtn" från html-dokumentet i en variabel
-let ctrlBtn = document.querySelectorAll(".ctrlBtn");
+const ctrlBtn = document.querySelectorAll(".ctrlBtn");
+
+function gameEnding() {
+    for (i = 0; i < ctrlBtn.length; i++) {
+        ctrlBtn[i].disabled = true;
+        document.getElementById("guessCounter").innerHTML = "Du förlorade!";
+    }
+}
+
 
 
 //Funktion för få ut gissade bokstäver i boxarna, att färga och stänga av varje knapp som använts. 
@@ -108,8 +94,9 @@ ctrlBtn.forEach(function disableBtn (btn){
 
         const letterBoxes = document.querySelectorAll("#word > li > input");
         
+        //
         if (rightWord.includes(buttonLetter) === false) {
-            click = document.getElementById("guessCounter").innerHTML--;
+            click = guessHtml.innerHTML--;
             wrongGuess++;
             hngImg.setAttribute("src", `./img/bild${wrongGuess}.png`);
 
@@ -120,181 +107,49 @@ ctrlBtn.forEach(function disableBtn (btn){
           if (buttonLetter === rightWord[i]) {
             letterBoxes[i].value = buttonLetter;
             rightGuess++;
-            //FÖRLORAT
+            //FÖRLUST
           } else if (wrongGuess === 5) {
-              console.log("du förlorade");
+            guessHtml.innerHTML = "Du förlorade...";
+            guessHtml.style.color = "red";
+            guessHtml.style.fontWeight = "bold";
+            guessHtml.style.textTransform = "uppercase";
+            gameEnding();
           } 
 
-    }
+    }   //VINST
          if (rightGuess === rightWord.length) {
-        console.log("du vann");
+            guessHtml.innerHTML = "Du vann!";
+            guessHtml.style.color = "green";
+            guessHtml.style.fontWeight = "bold";
+            guessHtml.style.textTransform = "uppercase";
+            gameEnding();
     }
 });
   });
 
-  function checkIfWon () {
-      for  (let i = 0; i < word.children.length; i++) {
-            let value = true;
-          if (word.children.length[i].textContent === '') {
-              value = false;
-              console.log("du vann");
-          }
-      }
-  }
-/*
-//Räknar antal klick på bokstäverna till "Antal gissningar"
-ctrlBtn.forEach(function clickCount (btn){
-    btn.addEventListener('click', function() {
-        if (rightWord.includes(buttonLetter) === false) {
-        click = document.getElementById("guessCounter").innerHTML--;
-        }
-    })})*/
+  //Anropar random - fylttas till en startfunktion
+random();
 
-// Gör en array med bokstäver av det gissade ordet för att kunna få ut bokstäverna i boxarna.
-splitRightWord = rightWord.split(""); 
 
 //En loop för skapa boxarna för bokstäverna i ordet som ska gissas. Loopar även arrayen för det gissade ordet så de hamnar i boxarna.
 for (let i = 0; i < rightWord.length; i++) {
-    guessed[i] = `<li><input class='box' type='text' disabled value='-' id =""/></li>`;
-      
-}
-
-    
-for (let j = 0; j < rightWord.length; j++) {
-    splitRightWord = rightWord[j];
-   
-    //console.log(splitRightWord + index);
-    //console.log(guessed);
+    guessed[i] = `<li><input class='box' type='text' disabled value='-' id =""/></li>`;     
 }
 
 
-
-  
 document.getElementById("word").innerHTML = guessed.join(" ");
-leftoverLetters = rightWord.length;
-
-restart = document.getElementById("resetButton");
+restart = document.getElementById("resetButton");  
 
 
-
-
-  
-  ctrlBtn.forEach(function(btn){
-    btn.addEventListener('click', function test() { 
-
-        for (i = 0; i < splitRightWord; i ++); {
-
-        }
-    })})
-
-
-console.log(index);
-  
-
-//Funktion nollställer antal gissningar
-    restart = document.getElementById("resetButton").addEventListener ("click", function() {
-        //Nollställer antal gissningar 
-
-
-        for (i = count; i >= count; i-- ){
-
-        document.getElementById("guessCounter").innerHTML = (`${i}`);
-        
+//Funktion nollställer antal gissningar och låser upp bokstavsknapparna
+document.getElementById("resetButton").addEventListener ("click", function reset() {
     
-        }
-    })
-        
-    
-    /*//Separat funktion för eventlistener
-    function setEventListener (event) {
-        btn.addEventListener("click");
+for (let i = 0; i < ctrlBtn.length; i++) {
+    ctrlBtn[i].disabled = false;
+}  
+    for (i = count; i >= count; i-- ){
+    document.getElementById("guessCounter").innerHTML = (`${i}`);
+
     }
-    
+})
 
-*/
-
-//buttonValue = button.value;
-    
-//Loop som delar upp bilderna från arrayen
-/*
-for (let i = 0; i < hangmanImgArray.length; i++) {
-    imgValue = imgContainer.value;
-    img = hangmanImgArray[i];*/
-   // document.getElementById("img-container").innerHTML = `<img src="${img}" id="hangman">`;
-    
-
-   /* if (imgValue === buttonValue)
-    console.log("det var sant");
-    document.getElementById("img-container").innerHTML = `<img src="${img}" id="hangman">`;
-    
-    console.log(img);*/
-
-
-//Test 
-/*
-ctrlBtn.forEach(function(btn){
-    btn.addEventListener('click', function display() { 
-       
-        if (rightWord.includes(btn.value))
-            console.log("hej");
-            
-        
-    }
-    
-    )
-  }
-)*/
-    
-
-
-//let removedLetters2 = splitRightWord.splice(index, 1);
-//console.log(splitRightWord);
-
-//let leftoverLetters = rightWord.length;
-
-
-/*count();*/
-//displayWord(); 
-
-
-//document.getElementById("word").value = guessed.join(" ");
-//leftoverLetters = rightWord.length;
-
-/*let imageIndex = 0;
-document.querySelectorAll('.ctrlBtn').forEach(function(btn){
-    btn.addEventListener('click', function() {
-        for (let y = 0; y < hangmanImgArray.length; y++) {
-           hngImg.innerHTML = hangmanImgArray[y];
-        }
-    })})*/
-
-//En loop för att skapa en array 
-/*for (let i = 0; i < splitRightWord.length; i++) { 
-        letterRightWord = splitRightWord[i]
-}*/
-/*
-//Tar fram index för bokstaven (inte bara första )
-    ctrlBtn.forEach(function getLetterIndex (btn){
-    btn.addEventListener('click', function() {
-
-    for (index = rightWord.indexOf(btn.value); index > -1; index = rightWord.indexOf(btn.value, index+1)){
-    console.log(index);
-}
-  }  )
-})*/
-
-//Funktion nollställer antal gissningar
-/*restart.addEventListener("click", function resetButton () {
-    if (restart.innerText ="Starta") {
-        restart.innerText = "Spela igen";
-    }
-        else {
-        restart.innerText = "Starta";
-    }
-    document.getElementById("guessCounter").innerHTML = (""); 
-})*/
-
-
-
-
-//Test få fram om bokstav finns med eller ej 
