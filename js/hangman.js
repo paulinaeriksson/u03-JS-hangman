@@ -35,53 +35,88 @@ const guessHtml = document.getElementById("guessCounter");
 const hngImg = document.getElementById("hangman");
 
 
-//Array med hundraser
-const dogs = [
-    "dalmatiner",
-    "labrador",
-    "labradoodle",
-    "pudel",
-    "schäfer",
-    "tax",
-    "dobermann",
-    "pomeranian",
-    "chihuahua"
+//Function to get random word
+function random() {
+    const dogs = [
+        "dalmatiner",
+        "labrador",
+        "labradoodle",
+        "pudel",
+        "schäfer",
+        "tax",
+        "dobermann",
+        "pomeranian",
+        "chihuahua"
 ];
 
-
-
-function random() {
     rightWord = dogs[Math.floor(Math.random() * dogs.length)];
+    console.log(rightWord);
 }
 
+//Function for making input boxes
+function createBoxes(){
+    random();    
+    for (let i = 0; i < rightWord.length; i++) {
+        guessed[i] = `<li><input class='box' type='text' disabled value='' id =""/></li>`;   
+    }
+    
+}
 
-
-/// SPELPLAN ///
-
-//Array med bokstäver (för knapparna) 
+//Array with letters (for buttons) 
 let alphabet = [
     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", 
     "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "å", "ä", "ö"
 ]
 
-//Skapa knapparna med onclick-funktion. Tar variabeln html och lägger till html-kod för varje (forEach) bokstav.
-alphabet.forEach(function createLetters(letters){
-    html += `<li><button class="ctrlBtn" onclick="btn" value="${letters}"" >${letters}</button>`
-})
-button.innerHTML = html;
 
+function start(){
+    keyboard();
+    createBoxes();
+ }
 
+ start();
 
-//Lägger in knapparnas class="ctrlBtn" från html-dokumentet i en variabel
-const ctrlBtn = document.querySelectorAll(".ctrlBtn");
+function keyboard(){
+      //Creates keyboard
+      for (let i = 0; i < alphabet.length; i++){
+        letters = alphabet[i];
+        html += `<li><button class="ctrlBtn" onclick="btn" value="${letters}" >${letters}</button>`;
+    }
+   button.innerHTML = html;
+}
+
 
 function gameEnding() {
     for (i = 0; i < ctrlBtn.length; i++) {
         ctrlBtn[i].disabled = true;
-        document.getElementById("guessCounter").innerHTML = "Du förlorade!";
+    }
+
+}
+//Lägger in knapparnas class="ctrlBtn" från html-dokumentet i en variabel
+const ctrlBtn = document.querySelectorAll(".ctrlBtn");
+
+function win() {
+    for (let i = 0; i < rightWord.length; i++ ){
+    if (rightGuess === rightWord.length){
+        guessHtml.innerHTML = "DU VANN!";
+        guessHtml.style.color = "green";
+        guessHtml.style.fontWeight = "bold";
+        guessHtml.style.textTransform = "uppercase";
+        gameEnding();
     }
 }
+}
 
+function loose(){
+    for (let i = 0; i < rightWord.length; i++ ){
+    if (wrongGuess === 5) {
+        guessHtml.innerHTML = "Du förlorade...";
+        guessHtml.style.color = "red";
+        guessHtml.style.fontWeight = "bold";
+        guessHtml.style.textTransform = "uppercase";
+        gameEnding();
+    }
+}}
 
 
 //Funktion för få ut gissade bokstäver i boxarna, att färga och stänga av varje knapp som använts. 
@@ -89,12 +124,9 @@ ctrlBtn.forEach(function disableBtn (btn){
     btn.addEventListener('click', function(event) {
       this.style.background = "darkgray";
       btn.disabled = true;
-    
-      const buttonLetter = event.target.value;
-
+        const buttonLetter = event.target.value;
         const letterBoxes = document.querySelectorAll("#word > li > input");
-        
-        //
+//Gets the images of hangman to change with every wrong guess
         if (rightWord.includes(buttonLetter) === false) {
             click = guessHtml.innerHTML--;
             wrongGuess++;
@@ -102,59 +134,55 @@ ctrlBtn.forEach(function disableBtn (btn){
 
             }
 
+ //Gets the letters out in the boxes
       for (let i = 0; i < rightWord.length; i++ ) {
-            //Få ut bokstäverna i boxarna
           if (buttonLetter === rightWord[i]) {
             letterBoxes[i].value = buttonLetter;
             rightGuess++;
-            //FÖRLUST
-          } else if (wrongGuess === 5) {
-            guessHtml.innerHTML = "Du förlorade...";
-            guessHtml.style.color = "red";
-            guessHtml.style.fontWeight = "bold";
-            guessHtml.style.textTransform = "uppercase";
-            gameEnding();
           } 
-
-    }   //VINST
-         if (rightGuess === rightWord.length) {
-            guessHtml.innerHTML = "Du vann!";
-            guessHtml.style.color = "green";
-            guessHtml.style.fontWeight = "bold";
-            guessHtml.style.textTransform = "uppercase";
-            gameEnding();
-    }
+        win();
+        loose();
+    }  
+    
 });
-  });
-
-  //Anropar random - flyttas till en startfunktion
-random();
-
-
-//En loop för skapa boxarna för bokstäverna i ordet som ska gissas. Loopar även arrayen för det gissade ordet så de hamnar i boxarna.
-for (let i = 0; i < rightWord.length; i++) {
-    guessed[i] = `<li><input class='box' type='text' disabled value='-' id =""/></li>`;     
-}
-
+ });
 
 document.getElementById("word").innerHTML = guessed.join(" ");
 restart = document.getElementById("resetButton");  
 
-
-//Funktion nollställer antal gissningar och låser upp bokstavsknapparna
-document.getElementById("resetButton").addEventListener ("click", function reset() {
+function resetBtn(){
     hngImg.setAttribute("src", `./img/bild0.png`);
-    wrongGuess ="";
-    rightGuess="";
+    wrongGuess = "";
+    rightGuess= "";
     guessHtml.style.color = "black";
+    random();
+    resetGuesses();
+    unlockBtns();
 
+   
 
-for (let i = 0; i < ctrlBtn.length; i++) {
-    ctrlBtn[i].disabled = false;
-
-}  
-    for (i = count; i >= count; i-- ){
-    document.getElementById("guessCounter").innerHTML = (`${i}`);
+    
 
     }
-})
+
+function unlockBtns(){
+     for (let i = 0; i < ctrlBtn.length; i++) {
+    ctrlBtn[i].disabled = false;
+    ctrlBtn[i].style.background = "lightgreen";
+    }  
+}    
+
+function resetGuesses(){
+    for (i = count; i >= count; i-- ){
+    document.getElementById("guessCounter").innerHTML = (`${i}`);
+    }
+}    
+
+function reset() {
+    restart.addEventListener('click', resetBtn);
+}
+
+ reset();
+
+
+
