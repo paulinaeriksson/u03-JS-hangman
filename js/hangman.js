@@ -34,7 +34,6 @@ let click ="";
 const guessHtml = document.getElementById("guessCounter");
 const hngImg = document.getElementById("hangman");
 
-
 //Function to get random word
 function random() {
     const dogs = [
@@ -53,13 +52,13 @@ function random() {
     console.log(rightWord);
 }
 
+random();
 //Function for making input boxes
 function createBoxes(){
-    random();    
+
     for (let i = 0; i < rightWord.length; i++) {
-        guessed[i] = `<li><input class='box' type='text' disabled value='' id =""/></li>`;   
-    }
-    
+        guessed[i] =  `<li><input class='box' type='text' placeholder='_' disabled value='' id =""/></li>`;  
+    }   
 }
 
 //Array with letters (for buttons) 
@@ -71,7 +70,7 @@ let alphabet = [
 
 function start(){
     keyboard();
-    createBoxes();
+    //createBoxes();
  }
 
  start();
@@ -118,14 +117,37 @@ function loose(){
     }
 }}
 
+/*function test(){
+    btn.addEventListener('click',  )
+}*/
+
+/*function getLettersOut(){
+   
+        const letterBoxes = document.querySelectorAll("#word > li > input").addEventListener('click', function (event){ 
+        const buttonLetter = event.target.value;
+
+        for (let i = 0; i < rightWord.length; i++ ) {
+        if (buttonLetter === rightWord[i]) {
+          letterBoxes[i].value = buttonLetter;
+          rightGuess++;
+        } 
+      }
+    }
+       )
+    }*/
+
 
 //Funktion för få ut gissade bokstäver i boxarna, att färga och stänga av varje knapp som använts. 
 ctrlBtn.forEach(function disableBtn (btn){
-    btn.addEventListener('click', function(event) {
+    btn.addEventListener('click', function test(event) {
       this.style.background = "darkgray";
       btn.disabled = true;
+    
         const buttonLetter = event.target.value;
         const letterBoxes = document.querySelectorAll("#word > li > input");
+        
+        console.log(letterBoxes);
+    
 //Gets the images of hangman to change with every wrong guess
         if (rightWord.includes(buttonLetter) === false) {
             click = guessHtml.innerHTML--;
@@ -135,33 +157,35 @@ ctrlBtn.forEach(function disableBtn (btn){
             }
 
  //Gets the letters out in the boxes
-      for (let i = 0; i < rightWord.length; i++ ) {
+        for (let i = 0; i < rightWord.length; i++ ) {
           if (buttonLetter === rightWord[i]) {
             letterBoxes[i].value = buttonLetter;
             rightGuess++;
           } 
+        
         win();
         loose();
-    }  
-    
-});
+    } 
+
+}) 
  });
 
+createBoxes();
 document.getElementById("word").innerHTML = guessed.join(" ");
 restart = document.getElementById("resetButton");  
+
 
 function resetBtn(){
     hngImg.setAttribute("src", `./img/bild0.png`);
     wrongGuess = "";
     rightGuess= "";
     guessHtml.style.color = "black";
+    //document.querySelector("li > input").innerHTML = `<li><input class='box' type='text' placeholder='_' disabled value='' id =""/></li>`;   
+
     random();
     resetGuesses();
     unlockBtns();
-
-   
-
-    
+    createBoxes();
 
     }
 
@@ -186,3 +210,5 @@ function reset() {
 
 
 
+//Boxarna ska vara lika många som antalet bokstäver i ordet. 
+//När man trycker på reset ska ett nytt ord slumpas och visas på skärmen, boxarna uppdateras efter nya ordet.
